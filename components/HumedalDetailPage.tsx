@@ -7,7 +7,7 @@ type Tab = 'general' | 'flora' | 'testimonios' | 'galeria';
 const TabButton: React.FC<{ activeTab: Tab; tabName: Tab; label: string; onClick: (tab: Tab) => void }> = ({ activeTab, tabName, label, onClick }) => (
   <button
     onClick={() => onClick(tabName)}
-    className={`px-4 py-2 text-lg font-semibold transition-colors duration-300 ${
+    className={`px-3 sm:px-4 py-2 text-base sm:text-lg font-semibold transition-colors duration-300 whitespace-nowrap ${
       activeTab === tabName
         ? 'border-b-2 border-[#4A6C4A] text-[#4A6C4A]'
         : 'text-gray-500 hover:text-gray-800'
@@ -32,7 +32,7 @@ const FloraFaunaTab: React.FC<{ items: FloraFauna[] }> = ({ items }) => (
   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
     {items.map((item, index) => (
       <div key={index} className="flex items-start space-x-4">
-        <img src={item.imagenUrl} alt={item.nombreComun} className="w-24 h-24 object-cover rounded-lg shadow-md" />
+        <img src={item.imagenUrl} alt={item.nombreComun} className="w-24 h-24 object-cover rounded-lg shadow-md flex-shrink-0" />
         <div>
           <h4 className="text-xl font-bold">{item.nombreComun}</h4>
           <p className="text-sm text-gray-500 italic mb-1">{item.nombreCientifico}</p>
@@ -78,12 +78,12 @@ const HumedalDetailPage: React.FC<HumedalDetailPageProps> = ({ humedal, setCurre
       >
         &larr; Volver a Humedales
       </button>
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h2 className="text-4xl font-bold text-gray-800 mb-4">{humedal.nombre}</h2>
-        <p className="text-lg text-gray-500 mb-8">{humedal.subtitulo}</p>
+      <div className="bg-white p-6 sm:p-8 rounded-lg shadow-lg">
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">{humedal.nombre}</h2>
+        <p className="text-md sm:text-lg text-gray-500 mb-8">{humedal.subtitulo}</p>
         
         <div className="border-b border-gray-200 mb-8">
-          <nav className="flex space-x-4">
+          <nav className="flex flex-wrap -mb-px gap-x-2 sm:gap-x-4">
             <TabButton activeTab={activeTab} tabName="general" label="General" onClick={setActiveTab} />
             <TabButton activeTab={activeTab} tabName="flora" label="Flora y Fauna" onClick={setActiveTab} />
             <TabButton activeTab={activeTab} tabName="testimonios" label="Testimonios" onClick={setActiveTab} />
